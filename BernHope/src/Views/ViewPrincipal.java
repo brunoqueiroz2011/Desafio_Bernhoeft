@@ -7,6 +7,9 @@ package Views;
 
 import Controllers.ControllerAdditionalData;
 import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 
 /**
@@ -55,6 +58,9 @@ public class ViewPrincipal extends javax.swing.JFrame {
         lbl_team_name_additional_data = new javax.swing.JLabel();
         txt_team_name_additional_data = new javax.swing.JTextField();
         btn_save = new javax.swing.JButton();
+        lbl_mensage_error_registration = new javax.swing.JLabel();
+        lbl_mensage_error_user = new javax.swing.JLabel();
+        lbl_mensage_error_team_id = new javax.swing.JLabel();
         PanelListagemDadosCSV = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
@@ -64,6 +70,7 @@ public class ViewPrincipal extends javax.swing.JFrame {
         setBackground(new java.awt.Color(255, 255, 255));
         setForeground(java.awt.Color.white);
         setIconImages(null);
+        setMaximumSize(new java.awt.Dimension(800, 600));
         setMinimumSize(new java.awt.Dimension(800, 600));
         setSize(new java.awt.Dimension(800, 600));
 
@@ -166,13 +173,31 @@ public class ViewPrincipal extends javax.swing.JFrame {
         lbl_title_additional_data.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lbl_title_additional_data.setText("Dados Adicionais");
 
-        lbl_registration_additional_data.setText("Matricular:");
+        lbl_registration_additional_data.setText("*Matricular:");
 
-        lbl_user_additional_data.setText("Usuário:");
+        lbl_user_additional_data.setText("*Usuário:");
 
-        lbl_team_id_additional_data.setText("Equipe ID:");
+        lbl_team_id_additional_data.setText("*Equipe ID:");
 
-        lbl_indicator_additional_data.setText("Indicadores:");
+        lbl_indicator_additional_data.setText("*Indicadores:");
+
+        txt_user_additional_data.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt_user_additional_dataFocusLost(evt);
+            }
+        });
+
+        txt_registration_additional_data.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt_registration_additional_dataFocusLost(evt);
+            }
+        });
+
+        txt_team_id_additional_data.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt_team_id_additional_dataFocusLost(evt);
+            }
+        });
 
         check_delayed_actions.setText("% Ações Atrasadas");
 
@@ -190,6 +215,12 @@ public class ViewPrincipal extends javax.swing.JFrame {
             }
         });
 
+        lbl_mensage_error_registration.setForeground(new java.awt.Color(255, 51, 0));
+
+        lbl_mensage_error_user.setForeground(new java.awt.Color(255, 51, 0));
+
+        lbl_mensage_error_team_id.setForeground(new java.awt.Color(255, 51, 0));
+
         javax.swing.GroupLayout panel_additional_dataLayout = new javax.swing.GroupLayout(panel_additional_data);
         panel_additional_data.setLayout(panel_additional_dataLayout);
         panel_additional_dataLayout.setHorizontalGroup(
@@ -199,27 +230,38 @@ public class ViewPrincipal extends javax.swing.JFrame {
                 .addGroup(panel_additional_dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel_additional_dataLayout.createSequentialGroup()
                         .addGroup(panel_additional_dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(check_training_compliance)
-                            .addComponent(check_delayed_actions)
-                            .addComponent(lbl_title_additional_data)
                             .addGroup(panel_additional_dataLayout.createSequentialGroup()
-                                .addComponent(lbl_registration_additional_data)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txt_registration_additional_data, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(lbl_indicator_additional_data)
+                                .addGroup(panel_additional_dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(check_training_compliance)
+                                    .addComponent(check_delayed_actions)
+                                    .addComponent(lbl_title_additional_data)
+                                    .addComponent(lbl_indicator_additional_data))
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(panel_additional_dataLayout.createSequentialGroup()
                                 .addGroup(panel_additional_dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(lbl_team_id_additional_data, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(lbl_user_additional_data, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(panel_additional_dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txt_user_additional_data, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(panel_additional_dataLayout.createSequentialGroup()
                                         .addComponent(txt_team_id_additional_data, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(lbl_team_name_additional_data, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txt_team_name_additional_data, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addComponent(txt_team_name_additional_data, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(panel_additional_dataLayout.createSequentialGroup()
+                                        .addComponent(lbl_mensage_error_team_id, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(panel_additional_dataLayout.createSequentialGroup()
+                                        .addComponent(txt_user_additional_data, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lbl_mensage_error_user, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addGroup(panel_additional_dataLayout.createSequentialGroup()
+                                .addComponent(lbl_registration_additional_data)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txt_registration_additional_data, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lbl_mensage_error_registration, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(177, 177, 177))
                     .addGroup(panel_additional_dataLayout.createSequentialGroup()
                         .addComponent(btn_save)
@@ -233,18 +275,22 @@ public class ViewPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panel_additional_dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_registration_additional_data)
-                    .addComponent(txt_registration_additional_data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_registration_additional_data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_mensage_error_registration))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panel_additional_dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_user_additional_data)
-                    .addComponent(txt_user_additional_data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_user_additional_data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_mensage_error_user))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panel_additional_dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_team_id_additional_data)
                     .addComponent(txt_team_id_additional_data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbl_team_name_additional_data)
                     .addComponent(txt_team_name_additional_data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbl_mensage_error_team_id)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbl_indicator_additional_data)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(check_delayed_actions)
@@ -252,7 +298,7 @@ public class ViewPrincipal extends javax.swing.JFrame {
                 .addComponent(check_training_compliance)
                 .addGap(18, 18, 18)
                 .addComponent(btn_save)
-                .addContainerGap(141, Short.MAX_VALUE))
+                .addContainerGap(139, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout PanelDadosPrincipaisLayout = new javax.swing.GroupLayout(PanelDadosPrincipais);
@@ -296,7 +342,7 @@ public class ViewPrincipal extends javax.swing.JFrame {
             .addGroup(PanelListagemDadosCSVLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 765, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
         PanelListagemDadosCSVLayout.setVerticalGroup(
             PanelListagemDadosCSVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -354,14 +400,52 @@ public class ViewPrincipal extends javax.swing.JFrame {
     private void btn_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_saveActionPerformed
         ControllerAdditionalData additionalData = new ControllerAdditionalData();        
         String filePath = lbl_File_Path.getText();
-        additionalData.validFileImport(filePath);
-        /*Chamar o metodo de tratar os dados adicionais
-          Chamar o metodo que realiza a leitura do arquivo csv
-          Chamar o metodo 
-        */
-        
+        try {
+            lbl_validatoricon.setText(additionalData.validFileImport(filePath));
+            
+            if (txt_registration_additional_data.getText().equals("")) {errorRegistration("Campo não poder estar vazio");}else{errorRegistration("");}
+            if (txt_user_additional_data.getText().equals("")) {errorUser("Campo não poder estar vazio");}else{errorUser("");}
+            if (txt_team_id_additional_data.getText().equals("")) {errorTeamId("Campo não poder estar vazio");}else{errorTeamId("");}
+            
+            additionalData.validAdditionalData(txt_registration_additional_data.getText(),
+                                               txt_user_additional_data.getText(),
+                                               txt_team_id_additional_data.getText(),
+                                               check_delayed_actions.isSelected(),
+                                               check_training_compliance.isSelected());
+            /*Chamar o metodo de tratar os dados adicionais
+            Chamar o metodo que realiza a leitura do arquivo csv
+            Chamar o metodo
+            */
+        } catch (IOException ex) {
+            Logger.getLogger(ViewPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }        
     }//GEN-LAST:event_btn_saveActionPerformed
 
+    private void txt_registration_additional_dataFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_registration_additional_dataFocusLost
+        if (txt_registration_additional_data.getText().equals("")) {errorRegistration("Campo não poder estar vazio");}
+        else{errorRegistration("");}
+    }//GEN-LAST:event_txt_registration_additional_dataFocusLost
+
+    private void txt_user_additional_dataFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_user_additional_dataFocusLost
+        if (txt_user_additional_data.getText().equals("")) {errorUser("Campo não poder estar vazio");}
+        else{errorUser("");}
+    }//GEN-LAST:event_txt_user_additional_dataFocusLost
+
+    private void txt_team_id_additional_dataFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_team_id_additional_dataFocusLost
+        if (txt_team_id_additional_data.getText().equals("")) {errorTeamId("Campo não poder estar vazio");}
+        else{errorTeamId("");}
+    }//GEN-LAST:event_txt_team_id_additional_dataFocusLost
+
+    public void errorRegistration(String error){
+        lbl_mensage_error_registration.setText(error);
+    }
+    public void errorUser(String error){
+        lbl_mensage_error_user.setText(error);
+    }
+    public void errorTeamId(String error){
+        lbl_mensage_error_team_id.setText(error);
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -412,6 +496,9 @@ public class ViewPrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbl_File_Path;
     private javax.swing.JLabel lbl_indicator_additional_data;
+    private javax.swing.JLabel lbl_mensage_error_registration;
+    private javax.swing.JLabel lbl_mensage_error_team_id;
+    private javax.swing.JLabel lbl_mensage_error_user;
     private javax.swing.JLabel lbl_registration_additional_data;
     private javax.swing.JLabel lbl_team_id_additional_data;
     private javax.swing.JLabel lbl_team_name_additional_data;
