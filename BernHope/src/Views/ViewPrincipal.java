@@ -5,6 +5,10 @@
  */
 package Views;
 
+import Controllers.ControllerAdditionalData;
+import java.io.File;
+import javax.swing.JFileChooser;
+
 /**
  *
  * @author Bruno
@@ -29,19 +33,38 @@ public class ViewPrincipal extends javax.swing.JFrame {
 
         PanelLogo = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        btn_about = new javax.swing.JButton();
         TabbedPaneInformacoes = new javax.swing.JTabbedPane();
         PanelDadosPrincipais = new javax.swing.JPanel();
+        panel_anexar_aquivo_csv = new javax.swing.JPanel();
+        btnChooseFile = new javax.swing.JButton();
+        lbl_File_Path = new javax.swing.JLabel();
+        lbl_validatoricon = new javax.swing.JLabel();
+        lbl_title_anexar_aquivo = new javax.swing.JLabel();
+        panel_additional_data = new javax.swing.JPanel();
+        lbl_title_additional_data = new javax.swing.JLabel();
+        lbl_registration_additional_data = new javax.swing.JLabel();
+        lbl_user_additional_data = new javax.swing.JLabel();
+        lbl_team_id_additional_data = new javax.swing.JLabel();
+        lbl_indicator_additional_data = new javax.swing.JLabel();
+        txt_user_additional_data = new javax.swing.JTextField();
+        txt_registration_additional_data = new javax.swing.JTextField();
+        txt_team_id_additional_data = new javax.swing.JTextField();
+        check_delayed_actions = new javax.swing.JCheckBox();
+        check_training_compliance = new javax.swing.JCheckBox();
+        lbl_team_name_additional_data = new javax.swing.JLabel();
+        txt_team_name_additional_data = new javax.swing.JTextField();
+        btn_save = new javax.swing.JButton();
         PanelListagemDadosCSV = new javax.swing.JPanel();
-        MenuBarNavegation = new javax.swing.JMenuBar();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Bernhope");
         setBackground(new java.awt.Color(255, 255, 255));
+        setForeground(java.awt.Color.white);
         setIconImages(null);
         setMinimumSize(new java.awt.Dimension(800, 600));
-        setPreferredSize(new java.awt.Dimension(800, 600));
         setSize(new java.awt.Dimension(800, 600));
 
         PanelLogo.setBackground(new java.awt.Color(255, 255, 255));
@@ -49,64 +72,241 @@ public class ViewPrincipal extends javax.swing.JFrame {
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/logo-bernhoeft-compressor.jpg"))); // NOI18N
 
+        btn_about.setBackground(new java.awt.Color(0, 70, 152));
+        btn_about.setForeground(new java.awt.Color(255, 255, 255));
+        btn_about.setText("Sobre");
+        btn_about.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_aboutActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout PanelLogoLayout = new javax.swing.GroupLayout(PanelLogo);
         PanelLogo.setLayout(PanelLogoLayout);
         PanelLogoLayout.setHorizontalGroup(
             PanelLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelLogoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+            .addGroup(PanelLogoLayout.createSequentialGroup()
+                .addGroup(PanelLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_about)
+                    .addGroup(PanelLogoLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PanelLogoLayout.setVerticalGroup(
             PanelLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelLogoLayout.createSequentialGroup()
-                .addContainerGap(45, Short.MAX_VALUE)
+            .addGroup(PanelLogoLayout.createSequentialGroup()
+                .addComponent(btn_about)
+                .addGap(1, 1, 1)
                 .addComponent(jLabel1)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addGap(27, 27, 27))
         );
 
         TabbedPaneInformacoes.setBackground(new java.awt.Color(255, 255, 255));
 
         PanelDadosPrincipais.setBackground(new java.awt.Color(255, 255, 255));
 
+        panel_anexar_aquivo_csv.setBackground(new java.awt.Color(255, 255, 255));
+        panel_anexar_aquivo_csv.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 70, 152)));
+        panel_anexar_aquivo_csv.setToolTipText("Teste");
+        panel_anexar_aquivo_csv.setName("Teste"); // NOI18N
+
+        btnChooseFile.setText("Escolha Arquivo");
+        btnChooseFile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChooseFileActionPerformed(evt);
+            }
+        });
+
+        lbl_File_Path.setText("Nenhum arquivo selecionado");
+
+        lbl_validatoricon.setText("nada");
+
+        lbl_title_anexar_aquivo.setBackground(new java.awt.Color(0, 70, 152));
+        lbl_title_anexar_aquivo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lbl_title_anexar_aquivo.setText("Anexar arquivo");
+
+        javax.swing.GroupLayout panel_anexar_aquivo_csvLayout = new javax.swing.GroupLayout(panel_anexar_aquivo_csv);
+        panel_anexar_aquivo_csv.setLayout(panel_anexar_aquivo_csvLayout);
+        panel_anexar_aquivo_csvLayout.setHorizontalGroup(
+            panel_anexar_aquivo_csvLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_anexar_aquivo_csvLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panel_anexar_aquivo_csvLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panel_anexar_aquivo_csvLayout.createSequentialGroup()
+                        .addComponent(btnChooseFile)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lbl_File_Path, javax.swing.GroupLayout.PREFERRED_SIZE, 596, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, Short.MAX_VALUE)
+                        .addComponent(lbl_validatoricon))
+                    .addGroup(panel_anexar_aquivo_csvLayout.createSequentialGroup()
+                        .addComponent(lbl_title_anexar_aquivo)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        panel_anexar_aquivo_csvLayout.setVerticalGroup(
+            panel_anexar_aquivo_csvLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_anexar_aquivo_csvLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbl_title_anexar_aquivo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panel_anexar_aquivo_csvLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnChooseFile)
+                    .addComponent(lbl_File_Path)
+                    .addComponent(lbl_validatoricon))
+                .addContainerGap())
+        );
+
+        lbl_validatoricon.getAccessibleContext().setAccessibleName("");
+
+        panel_additional_data.setBackground(new java.awt.Color(255, 255, 255));
+        panel_additional_data.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 70, 152)));
+
+        lbl_title_additional_data.setBackground(new java.awt.Color(0, 70, 152));
+        lbl_title_additional_data.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lbl_title_additional_data.setText("Dados Adicionais");
+
+        lbl_registration_additional_data.setText("Matricular:");
+
+        lbl_user_additional_data.setText("Usuário:");
+
+        lbl_team_id_additional_data.setText("Equipe ID:");
+
+        lbl_indicator_additional_data.setText("Indicadores:");
+
+        check_delayed_actions.setText("% Ações Atrasadas");
+
+        check_training_compliance.setText("Cumprimento do treinamento JEDI");
+
+        lbl_team_name_additional_data.setText("Equipe Nome:");
+
+        btn_save.setBackground(new java.awt.Color(0, 70, 152));
+        btn_save.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btn_save.setForeground(new java.awt.Color(255, 255, 255));
+        btn_save.setText("Salvar");
+        btn_save.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_saveActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panel_additional_dataLayout = new javax.swing.GroupLayout(panel_additional_data);
+        panel_additional_data.setLayout(panel_additional_dataLayout);
+        panel_additional_dataLayout.setHorizontalGroup(
+            panel_additional_dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_additional_dataLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panel_additional_dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panel_additional_dataLayout.createSequentialGroup()
+                        .addGroup(panel_additional_dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(check_training_compliance)
+                            .addComponent(check_delayed_actions)
+                            .addComponent(lbl_title_additional_data)
+                            .addGroup(panel_additional_dataLayout.createSequentialGroup()
+                                .addComponent(lbl_registration_additional_data)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txt_registration_additional_data, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lbl_indicator_additional_data)
+                            .addGroup(panel_additional_dataLayout.createSequentialGroup()
+                                .addGroup(panel_additional_dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lbl_team_id_additional_data, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lbl_user_additional_data, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(panel_additional_dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txt_user_additional_data, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(panel_additional_dataLayout.createSequentialGroup()
+                                        .addComponent(txt_team_id_additional_data, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(lbl_team_name_additional_data, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txt_team_name_additional_data, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(177, 177, 177))
+                    .addGroup(panel_additional_dataLayout.createSequentialGroup()
+                        .addComponent(btn_save)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        );
+        panel_additional_dataLayout.setVerticalGroup(
+            panel_additional_dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_additional_dataLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbl_title_additional_data)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panel_additional_dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_registration_additional_data)
+                    .addComponent(txt_registration_additional_data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panel_additional_dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_user_additional_data)
+                    .addComponent(txt_user_additional_data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panel_additional_dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_team_id_additional_data)
+                    .addComponent(txt_team_id_additional_data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_team_name_additional_data)
+                    .addComponent(txt_team_name_additional_data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lbl_indicator_additional_data)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(check_delayed_actions)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(check_training_compliance)
+                .addGap(18, 18, 18)
+                .addComponent(btn_save)
+                .addContainerGap(141, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout PanelDadosPrincipaisLayout = new javax.swing.GroupLayout(PanelDadosPrincipais);
         PanelDadosPrincipais.setLayout(PanelDadosPrincipaisLayout);
         PanelDadosPrincipaisLayout.setHorizontalGroup(
             PanelDadosPrincipaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 795, Short.MAX_VALUE)
+            .addGroup(PanelDadosPrincipaisLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(PanelDadosPrincipaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panel_anexar_aquivo_csv, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panel_additional_data, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PanelDadosPrincipaisLayout.setVerticalGroup(
             PanelDadosPrincipaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 419, Short.MAX_VALUE)
+            .addGroup(PanelDadosPrincipaisLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(panel_anexar_aquivo_csv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(panel_additional_data, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        panel_anexar_aquivo_csv.getAccessibleContext().setAccessibleName("");
 
         TabbedPaneInformacoes.addTab("Dados Principais", PanelDadosPrincipais);
 
         PanelListagemDadosCSV.setBackground(new java.awt.Color(255, 255, 255));
 
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(jList1);
+
         javax.swing.GroupLayout PanelListagemDadosCSVLayout = new javax.swing.GroupLayout(PanelListagemDadosCSV);
         PanelListagemDadosCSV.setLayout(PanelListagemDadosCSVLayout);
         PanelListagemDadosCSVLayout.setHorizontalGroup(
             PanelListagemDadosCSVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 795, Short.MAX_VALUE)
+            .addGroup(PanelListagemDadosCSVLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 765, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         PanelListagemDadosCSVLayout.setVerticalGroup(
             PanelListagemDadosCSVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 419, Short.MAX_VALUE)
+            .addGroup(PanelListagemDadosCSVLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(355, Short.MAX_VALUE))
         );
 
         TabbedPaneInformacoes.addTab("Listagem dos Dados", PanelListagemDadosCSV);
-
-        MenuBarNavegation.setBackground(new java.awt.Color(255, 255, 255));
-
-        jMenu2.setText("Inicio");
-        MenuBarNavegation.add(jMenu2);
-
-        jMenu3.setText("Sobre");
-        MenuBarNavegation.add(jMenu3);
-
-        setJMenuBar(MenuBarNavegation);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -118,9 +318,9 @@ public class ViewPrincipal extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(PanelLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(PanelLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(TabbedPaneInformacoes))
+                .addComponent(TabbedPaneInformacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         TabbedPaneInformacoes.getAccessibleContext().setAccessibleName("Dados Principais");
@@ -128,6 +328,39 @@ public class ViewPrincipal extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnChooseFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseFileActionPerformed
+        File[] files = null; 
+        JFileChooser filechoose = new JFileChooser(); 
+        filechoose.setDialogTitle("Escolha o arquivo..."); 
+        filechoose.setDialogType(JFileChooser.OPEN_DIALOG); 
+        filechoose.setApproveButtonText("OK"); 
+        filechoose.setFileSelectionMode(JFileChooser.FILES_ONLY); 
+        filechoose.setMultiSelectionEnabled(true); 
+        int resultado = filechoose.showOpenDialog(filechoose); 
+        if (resultado == JFileChooser.CANCEL_OPTION){ System.exit(1); } 
+        files = filechoose.getSelectedFiles(); 
+        for(File file : files){
+                lbl_File_Path.setText(file.getPath());                
+        }       
+    }//GEN-LAST:event_btnChooseFileActionPerformed
+
+    private void btn_aboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_aboutActionPerformed
+        // TODO add your handling code here:
+        ViewAbout about = new ViewAbout();
+        //about.setVisible(true);
+    }//GEN-LAST:event_btn_aboutActionPerformed
+
+    private void btn_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_saveActionPerformed
+        ControllerAdditionalData additionalData = new ControllerAdditionalData();        
+        String filePath = lbl_File_Path.getText();
+        additionalData.validFileImport(filePath);
+        /*Chamar o metodo de tratar os dados adicionais
+          Chamar o metodo que realiza a leitura do arquivo csv
+          Chamar o metodo 
+        */
+        
+    }//GEN-LAST:event_btn_saveActionPerformed
 
     /**
      * @param args the command line arguments
@@ -165,13 +398,32 @@ public class ViewPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuBar MenuBarNavegation;
     private javax.swing.JPanel PanelDadosPrincipais;
     private javax.swing.JPanel PanelListagemDadosCSV;
     private javax.swing.JPanel PanelLogo;
     private javax.swing.JTabbedPane TabbedPaneInformacoes;
+    private javax.swing.JButton btnChooseFile;
+    private javax.swing.JButton btn_about;
+    private javax.swing.JButton btn_save;
+    private javax.swing.JCheckBox check_delayed_actions;
+    private javax.swing.JCheckBox check_training_compliance;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
+    private javax.swing.JList<String> jList1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbl_File_Path;
+    private javax.swing.JLabel lbl_indicator_additional_data;
+    private javax.swing.JLabel lbl_registration_additional_data;
+    private javax.swing.JLabel lbl_team_id_additional_data;
+    private javax.swing.JLabel lbl_team_name_additional_data;
+    private javax.swing.JLabel lbl_title_additional_data;
+    private javax.swing.JLabel lbl_title_anexar_aquivo;
+    private javax.swing.JLabel lbl_user_additional_data;
+    private javax.swing.JLabel lbl_validatoricon;
+    private javax.swing.JPanel panel_additional_data;
+    private javax.swing.JPanel panel_anexar_aquivo_csv;
+    private javax.swing.JTextField txt_registration_additional_data;
+    private javax.swing.JTextField txt_team_id_additional_data;
+    private javax.swing.JTextField txt_team_name_additional_data;
+    private javax.swing.JTextField txt_user_additional_data;
     // End of variables declaration//GEN-END:variables
 }
