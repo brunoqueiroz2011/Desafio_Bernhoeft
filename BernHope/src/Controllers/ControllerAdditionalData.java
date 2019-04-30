@@ -6,6 +6,7 @@
 package Controllers;
 
 import Dao.DaoArchive;
+import java.io.IOException;
 
 /**
  *
@@ -19,15 +20,19 @@ public class ControllerAdditionalData {
         archive = new DaoArchive();
     }        
     
-    public void validFileImport(String filePath){
-        if (filePath.equals(null) || filePath.equals("")) {
-             //return ""         
+    public String validFileImport(String filePath) throws IOException{
+        String result = null;
+        if (filePath.equals(null) || filePath.equals("") || filePath.equals("Nenhum arquivo selecionado")) {
+             result = "Erros de Caminho";
         }else{
-            archive.readFirtLineFile(filePath);
+            result = archive.readFirtLineFile(filePath);
         }
+        return result;
     }
     
-    public void validAdditionalData(){}        
+    public void validAdditionalData(String registration, String user, String teamId, Boolean delayedActions, Boolean trainingCompliance){
+        
+    }        
     
     public void addDataArrayStudents(){}    
     
