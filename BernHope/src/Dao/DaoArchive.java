@@ -5,10 +5,14 @@
  */
 package Dao;
 
+import Models.AsanaCSV;
+import Useful.DateUserful;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -18,7 +22,10 @@ import java.util.regex.Pattern;
  */
 public class DaoArchive {
 
+    private ArrayList<AsanaCSV> listdadoscsv;
+    
     public DaoArchive() {
+        listdadoscsv = new ArrayList<>();
     }        
     
     public String readFirtLineFile(String filePath) throws IOException{
@@ -53,25 +60,53 @@ public class DaoArchive {
         
     }
     
-    public void readFile(String filePath){
+    public ArrayList<AsanaCSV> readAndTreatFile(String filePath, int month) throws IOException, ParseException{        
         //Ler o arquivo
+        BufferedReader reader = null;
+        String line = "";
+        String csvDivider = ",";
+        String result = "";        
+        try {
+            reader = new BufferedReader(new FileReader(filePath));
+            while ((line = reader.readLine())!= null) {                
+                                
+                AsanaCSV dadoscsv = new AsanaCSV();
+                
+                String[] campos = line.split(csvDivider);                
+                try {
+                    if (Long.parseLong(campos[0]) > 0) {
+                        if (DateUserful.getMonth(campos[1]) == month) {
+                            dadoscsv.setTaskId(campos[0]);
+                            dadoscsv.setCreatedAt(campos[1]);
+                            dadoscsv.setCompletedAt(campos[2]);                
+                            dadoscsv.setName(campos[4]);
+                            dadoscsv.setAssignee(campos[5]);
+                            dadoscsv.setAssigneeEmail(campos[6]);
+                            dadoscsv.setStartDate(campos[7]);
+                            dadoscsv.setDueDate(campos[8]);   
+                            listdadoscsv.add(dadoscsv);
+                        }                        
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }              
+            }
+        }  catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (reader != null) {
+                reader.close();
+            }
+        }
+        
+        return listdadoscsv;
     }
     
-    public void treatFile(){
+    public void dataType(ArrayList<AsanaCSV> listdadoscsv){
         //Adiciona os dados do arquivo no array de alunos
-    }
-    
-    public void quantityActivitiesDone(){
-        //Devolve a quantidade total de atividades realizadas
-    }
-    
-    public void amountOverdueActivities(){
-        //Devolve a quantidade total de atividades atrasadas
-    }
-    
-    public void totalActivities(){
-        //Devolve a quantidade total de atividades cadastrada para o aluno
-    }
+    }       
 
     private String checkFieldsFile(String [] campos) {
         String result = "";        
