@@ -16,7 +16,7 @@ public final class ListStudents {
     
     private static ListStudents INSTANCE = new ListStudents();
 
-    private ArrayList<Student> students = new ArrayList();
+    private ArrayList<Student> students = new ArrayList();        
     
     public ListStudents() {        
     }
@@ -31,6 +31,13 @@ public final class ListStudents {
     public void addListStudents(Student student){
         students.add(student);
     }
+
+    public ArrayList<Student> getStudents() {
+        return students;
+    }
+    
+    
+    
     
     
     
