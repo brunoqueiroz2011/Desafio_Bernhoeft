@@ -15,15 +15,19 @@ public class Student {
     private int user;
     private Team team;
     private Indicator indicator;
+    private int numberMonth;
+    private int numberYear;
 
     public Student() {
     }
 
-    public Student(String registration, int user, Team team, Indicator indicator) {
+    public Student(String registration, int user, Team team, Indicator indicator, int numeroMes, int numeroAno) {
         this.registration = registration;
         this.user = user;
         this.team = team;
         this.indicator = indicator;
+        this.numberMonth = numeroMes;
+        this.numberYear = numeroAno;
     }
 
     public String getRegistration() {
@@ -57,6 +61,24 @@ public class Student {
     public void setIndicator(Indicator indicator) {
         this.indicator = indicator;
     }
+
+    public int getNumberMonth() {
+        return numberMonth;
+    }
+
+    public void setNumberMonth(int numberMonth) {
+        this.numberMonth = numberMonth;
+    }
+
+    public int getNumberYear() {
+        return numberYear;
+    }
+
+    public void setNumberYear(int numberYear) {
+        this.numberYear = numberYear;
+    }
+
+    
     
     
     
