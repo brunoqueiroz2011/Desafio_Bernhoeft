@@ -20,9 +20,11 @@ import java.util.ArrayList;
  */
 public class DaoStudent {
 
-    private ListStudents students;
+    //private ListStudents students;
 
-    private Student student;       
+    //private Student student;      
+    
+    private ArrayList<Student> students = new ArrayList();
 
     private ArrayList<AsanaCSV> listdadoscsv;
 
@@ -31,13 +33,13 @@ public class DaoStudent {
     private int countActivityDone;
 
     public DaoStudent() {
-        this.student = new Student();
-        this.students = new ListStudents();        
+        //this.student = new Student();
+        //this.students = new ListStudents();        
     }
 
     public DaoStudent(ArrayList<AsanaCSV> listdadoscsv) {
-        this.student = new Student();        
-        this.students = new ListStudents();
+        //this.student = new Student();        
+        //this.students = new ListStudents();
         this.listdadoscsv = listdadoscsv;
     }
 
@@ -56,21 +58,23 @@ public class DaoStudent {
         return indicator;
     }
 
-    public void addNewStudent(String registration, int user, int month, int idTeam, String nameTeam, int idIndicator, String nameIndicator, float value) throws ParseException {
-        this.student.setRegistration(registration);
-        this.student.setUser(user);
-        this.student.setTeam(addNewTeam(idTeam, nameTeam));
-        this.student.setIndicator(addNewIndicator(idIndicator,nameIndicator,value));
-        this.student.setNumberMonth(month);
-        this.student.setNumberYear(DateUserful.getYear(listdadoscsv.get(0).getCreatedAt()));
+    public Student addNewStudent(String registration, int user, int month, int idTeam, String nameTeam, int idIndicator, String nameIndicator, float value) throws ParseException {
+        Student student = new Student();
+        student.setRegistration(registration);
+        student.setUser(user);
+        student.setTeam(addNewTeam(idTeam, nameTeam));
+        student.setIndicator(addNewIndicator(idIndicator,nameIndicator,value));
+        student.setNumberMonth(month);
+        student.setNumberYear(DateUserful.getYear(listdadoscsv.get(0).getCreatedAt()));
+        return student;
     }
     
-    public void addStudentInList(){
-        this.students.addListStudents(student);
+    public void addStudentInList(Student student){
+        this.students.add(student);
     }
 
     public ArrayList<Student> getStudents() {
-        return students.getStudents();
+        return students;
     }
 
     public float quantityActivitiesDone() {
