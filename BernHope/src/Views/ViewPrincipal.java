@@ -6,20 +6,23 @@
 package Views;
 
 import Controllers.ControllerAdditionalData;
-import Singleton.ListStudents;
 import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
-
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Bruno
  */
 public class ViewPrincipal extends javax.swing.JFrame {
 
+    ControllerAdditionalData additionalData = new ControllerAdditionalData();
+    
     /**
      * Creates new form ViewPrincipal
      */
@@ -67,11 +70,12 @@ public class ViewPrincipal extends javax.swing.JFrame {
         cb_months_additional_data = new javax.swing.JComboBox<>();
         lbl_months_additional_data = new javax.swing.JLabel();
         lbl_mensage_error_email = new javax.swing.JLabel();
+        lbl_status_file = new javax.swing.JLabel();
         PanelListagemDadosCSV = new javax.swing.JPanel();
         ScrollPane_listData = new javax.swing.JScrollPane();
         table_list_data = new javax.swing.JTable();
-        btn_save1 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        btn_export = new javax.swing.JButton();
+        btn_refresh_list = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Bernhope");
@@ -104,6 +108,11 @@ public class ViewPrincipal extends javax.swing.JFrame {
         );
 
         TabbedPaneInformacoes.setBackground(new java.awt.Color(255, 255, 255));
+        TabbedPaneInformacoes.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                TabbedPaneInformacoesFocusGained(evt);
+            }
+        });
         TabbedPaneInformacoes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 TabbedPaneInformacoesMouseClicked(evt);
@@ -252,6 +261,9 @@ public class ViewPrincipal extends javax.swing.JFrame {
 
         lbl_mensage_error_email.setForeground(new java.awt.Color(255, 51, 0));
 
+        lbl_status_file.setBackground(new java.awt.Color(255, 255, 255));
+        lbl_status_file.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+
         javax.swing.GroupLayout panel_additional_dataLayout = new javax.swing.GroupLayout(panel_additional_data);
         panel_additional_data.setLayout(panel_additional_dataLayout);
         panel_additional_dataLayout.setHorizontalGroup(
@@ -307,6 +319,10 @@ public class ViewPrincipal extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txt_registration_additional_data, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(panel_additional_dataLayout.createSequentialGroup()
+                .addGap(322, 322, 322)
+                .addComponent(lbl_status_file)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         panel_additional_dataLayout.setVerticalGroup(
             panel_additional_dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -355,7 +371,9 @@ public class ViewPrincipal extends javax.swing.JFrame {
                         .addComponent(check_training_compliance)
                         .addGap(18, 18, 18)
                         .addComponent(btn_save)))
-                .addContainerGap(89, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addComponent(lbl_status_file)
+                .addGap(66, 66, 66))
         );
 
         javax.swing.GroupLayout PanelDadosPrincipaisLayout = new javax.swing.GroupLayout(PanelDadosPrincipais);
@@ -376,7 +394,7 @@ public class ViewPrincipal extends javax.swing.JFrame {
                 .addComponent(panel_anexar_aquivo_csv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(panel_additional_data, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         panel_anexar_aquivo_csv.getAccessibleContext().setAccessibleName("");
@@ -387,18 +405,7 @@ public class ViewPrincipal extends javax.swing.JFrame {
 
         table_list_data.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Matricula", "Usuário", "Equipe Id", "Equipe Nome", "Indicador Id", "Indicador Nome", "Valor", "Mês", "Ano"
@@ -421,17 +428,25 @@ public class ViewPrincipal extends javax.swing.JFrame {
         });
         ScrollPane_listData.setViewportView(table_list_data);
 
-        btn_save1.setBackground(new java.awt.Color(0, 70, 152));
-        btn_save1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btn_save1.setForeground(new java.awt.Color(255, 255, 255));
-        btn_save1.setText("Exportar CSV");
-        btn_save1.addActionListener(new java.awt.event.ActionListener() {
+        btn_export.setBackground(new java.awt.Color(0, 70, 152));
+        btn_export.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btn_export.setForeground(new java.awt.Color(255, 255, 255));
+        btn_export.setText("Exportar CSV");
+        btn_export.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_save1ActionPerformed(evt);
+                btn_exportActionPerformed(evt);
             }
         });
 
-        jLabel2.setText("jLabel2");
+        btn_refresh_list.setBackground(new java.awt.Color(0, 70, 152));
+        btn_refresh_list.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btn_refresh_list.setForeground(new java.awt.Color(255, 255, 255));
+        btn_refresh_list.setText("Atualizar Lista");
+        btn_refresh_list.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_refresh_listActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout PanelListagemDadosCSVLayout = new javax.swing.GroupLayout(PanelListagemDadosCSV);
         PanelListagemDadosCSV.setLayout(PanelListagemDadosCSVLayout);
@@ -442,9 +457,9 @@ public class ViewPrincipal extends javax.swing.JFrame {
                 .addGroup(PanelListagemDadosCSVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ScrollPane_listData, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
                     .addGroup(PanelListagemDadosCSVLayout.createSequentialGroup()
-                        .addComponent(btn_save1)
-                        .addGap(52, 52, 52)
-                        .addComponent(jLabel2)
+                        .addComponent(btn_export)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_refresh_list)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -452,8 +467,8 @@ public class ViewPrincipal extends javax.swing.JFrame {
             PanelListagemDadosCSVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelListagemDadosCSVLayout.createSequentialGroup()
                 .addGroup(PanelListagemDadosCSVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_save1)
-                    .addComponent(jLabel2))
+                    .addComponent(btn_export)
+                    .addComponent(btn_refresh_list))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addComponent(ScrollPane_listData, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -501,7 +516,7 @@ public class ViewPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnChooseFileActionPerformed
 
     private void btn_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_saveActionPerformed
-        ControllerAdditionalData additionalData = new ControllerAdditionalData();        
+       
         String filePath = lbl_File_Path.getText();
         try {
             lbl_validatoricon.setText(additionalData.validFileImport(filePath));
@@ -519,16 +534,15 @@ public class ViewPrincipal extends javax.swing.JFrame {
                                                cb_months_additional_data.getSelectedIndex(),
                                                check_delayed_actions.isSelected(),
                                                check_training_compliance.isSelected());
-            additionalData.addDataArrayStudents(filePath);
-            
-            
-            
+            additionalData.addDataArrayStudents(filePath);                        
             
         } catch (IOException ex) {
             Logger.getLogger(ViewPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ParseException ex) {
             Logger.getLogger(ViewPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }        
+        } finally {
+            JOptionPane.showMessageDialog(null, "Sua Planilha foi importada com sucesso!");
+        }       
     }//GEN-LAST:event_btn_saveActionPerformed
 
     private void txt_registration_additional_dataFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_registration_additional_dataFocusLost
@@ -559,14 +573,28 @@ public class ViewPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cb_months_additional_dataFocusLost
 
-    private void btn_save1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_save1ActionPerformed
+    private void btn_exportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_exportActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btn_save1ActionPerformed
+        
+    }//GEN-LAST:event_btn_exportActionPerformed
 
     private void TabbedPaneInformacoesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabbedPaneInformacoesMouseClicked
         // TODO add your handling code here:  
-        //Execultada quando a Aba 2 do panel é clicada
+        //Execultada quando a Aba 2 do panel é clicada        
     }//GEN-LAST:event_TabbedPaneInformacoesMouseClicked
+
+    private void TabbedPaneInformacoesFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TabbedPaneInformacoesFocusGained
+        
+    }//GEN-LAST:event_TabbedPaneInformacoesFocusGained
+
+    private void btn_refresh_listActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_refresh_listActionPerformed
+        // TODO add your handling code here:                
+        DefaultTableModel modelTableListFarol = (DefaultTableModel) table_list_data.getModel();
+        if (modelTableListFarol.getRowCount() > 0) {
+            additionalData.deleteDataListForTabel(modelTableListFarol);   
+        }        
+        modelTableListFarol = additionalData.getDataListForTabel(modelTableListFarol);
+    }//GEN-LAST:event_btn_refresh_listActionPerformed
 
     public void errorRegistration(String error){
         lbl_mensage_error_registration.setText(error);
@@ -623,13 +651,13 @@ public class ViewPrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane ScrollPane_listData;
     private javax.swing.JTabbedPane TabbedPaneInformacoes;
     private javax.swing.JButton btnChooseFile;
+    private javax.swing.JButton btn_export;
+    private javax.swing.JButton btn_refresh_list;
     private javax.swing.JButton btn_save;
-    private javax.swing.JButton btn_save1;
     private javax.swing.JComboBox<String> cb_months_additional_data;
     private javax.swing.JCheckBox check_delayed_actions;
     private javax.swing.JCheckBox check_training_compliance;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lbl_File_Path;
     private javax.swing.JLabel lbl_email_additional_data;
     private javax.swing.JLabel lbl_indicator_additional_data;
@@ -639,6 +667,7 @@ public class ViewPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_mensage_error_user;
     private javax.swing.JLabel lbl_months_additional_data;
     private javax.swing.JLabel lbl_registration_additional_data;
+    private javax.swing.JLabel lbl_status_file;
     private javax.swing.JLabel lbl_team_id_additional_data;
     private javax.swing.JLabel lbl_team_name_additional_data;
     private javax.swing.JLabel lbl_title_additional_data;
