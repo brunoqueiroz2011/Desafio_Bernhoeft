@@ -13,13 +13,15 @@ public class Indicator {
     
     private int id;
     private String name;
+    private float value;
     
     public Indicator() {
     }
-    
-    public Indicator(int id, String name) {
+
+    public Indicator(int id, String name, float value) {
         this.id = id;
         this.name = name;
+        this.value = value;
     }
 
     public int getId() {
@@ -37,6 +39,15 @@ public class Indicator {
     public void setName(String name) {
         this.name = name;
     }
+
+    public float getValue() {
+        return value;
+    }
+
+    public void setValue(float value) {
+        this.value = value;
+    }
+    
     
     
 }
