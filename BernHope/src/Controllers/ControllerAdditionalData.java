@@ -69,8 +69,13 @@ public class ControllerAdditionalData {
         }
         if (trainingCompliance) {            
             student = daoStudent.addNewStudent(this.registration, this.user, this.month,this.teamId, this.teamName,indicators.INDICADOR_ID_CUMPRIMENTO_TREINAMENTO_JEDI, indicators.INDICADOR_CUMPRIMENTO_TREINAMENTO_JEDI,daoStudent.quantityActivitiesDone());
-            daoStudent.addStudentInList(student);
-        }                
+            daoStudent.addStudentInList(student);            
+        }
+        archive.saveLog(
+                daoStudent.getActivityCount(),
+                daoStudent.getCountDelayedActivity(),
+                daoStudent.getCountActivityDone(),
+                email,"skywalkerluke041@gmail.com");
     }   
     
     public void deleteDataListForTabel(DefaultTableModel modelTableList){
@@ -97,6 +102,10 @@ public class ControllerAdditionalData {
                                                daoStudent.getStudents().get(row).getNumberYear()});
         }         
         return modelTableList;
+    }
+
+    public void exportDataTableForExcelCSV() {        
+        archive.exportDataTableForExcelCSV(daoStudent.getStudents());
     }
     
     
