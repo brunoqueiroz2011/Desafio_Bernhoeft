@@ -11,6 +11,7 @@ import Models.Student;
 import Models.Team;
 import Singleton.ListStudents;
 import Useful.DateUserful;
+import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
 
@@ -30,8 +31,8 @@ public class DaoStudent {
 
     private int activityCount;
     private int countDelayedActivity;
-    private int countActivityDone;
-
+    private int countActivityDone;    
+    
     public DaoStudent() {
         //this.student = new Student();
         //this.students = new ListStudents();        
@@ -41,6 +42,18 @@ public class DaoStudent {
         //this.student = new Student();        
         //this.students = new ListStudents();
         this.listdadoscsv = listdadoscsv;
+    }
+    
+    public int getActivityCount() {
+        return activityCount;
+    }
+
+    public int getCountDelayedActivity() {
+        return countDelayedActivity;
+    }
+
+    public int getCountActivityDone() {
+        return countActivityDone;
     }
 
     public Team addNewTeam(int id, String name) {
@@ -64,7 +77,7 @@ public class DaoStudent {
         student.setUser(user);
         student.setTeam(addNewTeam(idTeam, nameTeam));
         student.setIndicator(addNewIndicator(idIndicator,nameIndicator,value));
-        student.setNumberMonth(month);
+        student.setNumberMonth(month + 1);
         student.setNumberYear(DateUserful.getYear(listdadoscsv.get(0).getCreatedAt()));
         return student;
     }
@@ -116,7 +129,7 @@ public class DaoStudent {
     }
 
     public float percentCalculation(int dividend, float divider){
-        float quotient = 0;
+        float quotient = 0;        
         if (divider > 0) {
             quotient = dividend / divider;
         }
