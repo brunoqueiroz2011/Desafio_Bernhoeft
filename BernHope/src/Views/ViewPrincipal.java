@@ -6,6 +6,7 @@
 package Views;
 
 import Controllers.ControllerAdditionalData;
+import Dao.DaoArchive;
 import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
@@ -15,6 +16,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Bruno
@@ -575,7 +577,8 @@ public class ViewPrincipal extends javax.swing.JFrame {
 
     private void btn_exportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_exportActionPerformed
         // TODO add your handling code here:
-        
+        //Chamar o metódo para exportar os datos               
+        additionalData.exportDataTableForExcelCSV();
     }//GEN-LAST:event_btn_exportActionPerformed
 
     private void TabbedPaneInformacoesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabbedPaneInformacoesMouseClicked
