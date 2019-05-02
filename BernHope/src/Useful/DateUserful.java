@@ -74,5 +74,11 @@ public final class DateUserful {
         return calendar.get(Calendar.MONTH);
     }
     
+    public static String getDateToday() throws ParseException{
+        Date dateToday = new Date();
+        String date = new SimpleDateFormat(DATE_FORMAT_NOW).format(dateToday);
+        return date;
+    }
+    
     
 }
