@@ -6,15 +6,28 @@
 package Dao;
 
 import Models.AsanaCSV;
+import Models.Student;
 import Useful.DateUserful;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.Writer;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 
 /**
  *
@@ -138,6 +151,46 @@ public class DaoArchive {
             result = "OK";
         }
         return result;
+    }
+    
+    public void exportDataTableForExcelCSV(ArrayList<Student> listStudent){                
+        int rows = listStudent.size();
+        if (rows > 0) {
+            JFileChooser select = new JFileChooser();
+            File file;
+            if (select.showDialog(null, "Exportar Excel CSV") == JFileChooser.APPROVE_OPTION) {
+                file = select.getSelectedFile();
+                try {
+                    FileWriter archive = new FileWriter(file+".csv");
+                    PrintWriter saveArchive = new PrintWriter(archive);
+                    for (int row = 0; row < rows; row++) {
+                        saveArchive.printf("%s;%d;%d;%s;%d;%s;%.2f;%d;%d\n",
+                                              listStudent.get(row).getRegistration(),
+                                              listStudent.get(row).getUser(),
+                                              listStudent.get(row).getTeam().getId(),
+                                              listStudent.get(row).getTeam().getName(),
+                                              listStudent.get(row).getIndicator().getId(),
+                                              listStudent.get(row).getIndicator().getName(),
+                                              listStudent.get(row).getIndicator().getValue(),
+                                              listStudent.get(row).getNumberMonth(),
+                                              listStudent.get(row).getNumberYear());
+                    }                   
+                    archive.close();
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Por favor tente novamente"+e);                    
+                }finally{                    
+                    JOptionPane.showMessageDialog(null, "Planilha exportada com sucesso.");                    
+                }
+            }
+        }
+    }
+    
+    public void saveLog(int totalActivities, int amountOverdueActivities, int quantityActivitiesDone, String emailStudent, String emailTeacher) throws IOException, ParseException{
+        FileWriter archive = new FileWriter("log.csv");
+        PrintWriter saveArchive = new PrintWriter(archive);
+        saveArchive.printf("total de atividade,Atividades Atrasadas,Atividades Feitas,Data extracao,email Aluno,email Professor%n");
+        saveArchive.printf("%d,%d,%d,%s,%s,%s%n", totalActivities, amountOverdueActivities, quantityActivitiesDone, DateUserful.getDateToday(), emailStudent, emailTeacher);
+        archive.close();
     }
     
 }
