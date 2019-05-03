@@ -77,25 +77,26 @@ public class DaoStudent {
         student.setUser(user);
         student.setTeam(addNewTeam(idTeam, nameTeam));
         student.setIndicator(addNewIndicator(idIndicator,nameIndicator,value));
-        student.setNumberMonth(month + 1);
+        student.setNumberMonth(month);
         student.setNumberYear(DateUserful.getYear(listdadoscsv.get(0).getCreatedAt()));
         return student;
     }
     
     public void addStudentInList(Student student){
-        this.students.add(student);
+        this.students.add(student);        
     }
 
     public ArrayList<Student> getStudents() {
         return students;
     }
 
-    public float quantityActivitiesDone() {
+    public float quantityActivitiesDone(String userAsana) {
         float percent = 0;
         //Devolve a quantidade total de atividades realizadas
         for (int line = 0; line < listdadoscsv.size(); line++) {
             if (!listdadoscsv.get(line).getCreatedAt().isEmpty()
                 && !listdadoscsv.get(line).getCompletedAt().isEmpty()
+                && listdadoscsv.get(line).getAssignee().equals(userAsana)
                 && !listdadoscsv.get(line).getDueDate().isEmpty()) {
                 countActivityDone++;
             }
@@ -104,7 +105,7 @@ public class DaoStudent {
         return percentCalculation(this.countActivityDone, this.activityCount);
     }
 
-    public float amountOverdueActivities() throws ParseException {
+    public float amountOverdueActivities(String userAsana) throws ParseException {
         float percent = 0;
         String dateCreate = "", dateComplete = "", deuDate = "";
         long diffDateCSV = 0, diffDateCurrent = 0;
@@ -112,6 +113,7 @@ public class DaoStudent {
         for (int line = 0; line < listdadoscsv.size(); line++) {
             if (!listdadoscsv.get(line).getCreatedAt().isEmpty()
                 && listdadoscsv.get(line).getCompletedAt().isEmpty()
+                && listdadoscsv.get(line).getAssignee().equals(userAsana)
                 && !listdadoscsv.get(line).getDueDate().isEmpty()) {
                 
                 dateCreate = listdadoscsv.get(line).getCreatedAt();                
@@ -136,15 +138,21 @@ public class DaoStudent {
         return (quotient*100);
     }
     
-    public void totalActivities(String email) {
+    public void totalActivities(String userAsana) {
         //Devolve a quantidade total de atividades cadastrada para o aluno
         for (int line = 0; line < listdadoscsv.size(); line++) {
             if (!listdadoscsv.get(line).getCreatedAt().isEmpty()
-                && listdadoscsv.get(line).getAssignee().equals(email)
+                && listdadoscsv.get(line).getAssignee().equals(userAsana)
                 && !listdadoscsv.get(line).getDueDate().isEmpty()) {
                 this.activityCount++;
             }
         }
+    }
+    
+    public void cleanActivity(){
+        this.activityCount = 0;
+        this.countActivityDone = 0;
+        this.countDelayedActivity = 0;
     }
 
 }
