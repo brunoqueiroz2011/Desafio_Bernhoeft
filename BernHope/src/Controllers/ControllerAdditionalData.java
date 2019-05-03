@@ -22,7 +22,7 @@ public class ControllerAdditionalData {
 
     private DaoArchive archive;
     private DaoStudent daoStudent;
-    String registration, teamName, email;
+    String registration, teamName, userAsana;
     int user, teamId, month;
     Boolean delayedActions, trainingCompliance;
     
@@ -41,7 +41,7 @@ public class ControllerAdditionalData {
         return result;
     }
     
-    public void validAdditionalData(String registration, String user, String teamId, String teamName, String email, int month, Boolean delayedActions, Boolean trainingCompliance){
+    public void validAdditionalData(String registration, String user, String teamId, String teamName, String userAsana, int month, Boolean delayedActions, Boolean trainingCompliance){
         if(!registration.isEmpty())
             this.registration = registration;
         if(!user.isEmpty())
@@ -50,8 +50,8 @@ public class ControllerAdditionalData {
             this.teamId = Integer.parseInt(teamId);
         if(!teamName.isEmpty())
             this.teamName = teamName;
-        if(!email.isEmpty())
-            this.email = email;        
+        if(!userAsana.isEmpty())
+            this.userAsana = userAsana;        
             
         this.month = month;
         
@@ -59,23 +59,37 @@ public class ControllerAdditionalData {
         this.trainingCompliance = trainingCompliance;
     }     
     
-    public void addDataArrayStudents(String filePath) throws IOException, ParseException{
-        Student student = new Student();        
-        daoStudent = new DaoStudent(archive.readAndTreatFile(filePath, this.month));        
-        daoStudent.totalActivities(this.email);
+    public String userHaveActivity(){
+        return "";
+    }
+    
+    public int addDataArrayStudents(String filePath) throws IOException, ParseException{
+        Student student = new Student(); 
+        int userHaveActivity;
+        
+        if (archive.getListdadoscsv().isEmpty()) {
+            daoStudent = new DaoStudent(archive.readAndTreatFile(filePath, this.month));   
+        }        
+        daoStudent.totalActivities(this.userAsana);                
+        userHaveActivity = daoStudent.getActivityCount();
+        if (userHaveActivity == 0) {            
+            return userHaveActivity;
+        }
+        
         if (delayedActions) {            
-            student = daoStudent.addNewStudent(this.registration, this.user, this.month,this.teamId, this.teamName,indicators.INDICADOR_ID_ACOES_ATRASADAS, indicators.INDICADOR_ACOES_ATRASADAS,daoStudent.amountOverdueActivities());
+            student = daoStudent.addNewStudent(this.registration, this.user, this.month,this.teamId, this.teamName,indicators.INDICADOR_ID_ACOES_ATRASADAS, indicators.INDICADOR_ACOES_ATRASADAS,daoStudent.amountOverdueActivities(this.userAsana));
             daoStudent.addStudentInList(student);
         }
         if (trainingCompliance) {            
-            student = daoStudent.addNewStudent(this.registration, this.user, this.month,this.teamId, this.teamName,indicators.INDICADOR_ID_CUMPRIMENTO_TREINAMENTO_JEDI, indicators.INDICADOR_CUMPRIMENTO_TREINAMENTO_JEDI,daoStudent.quantityActivitiesDone());
+            student = daoStudent.addNewStudent(this.registration, this.user, this.month,this.teamId, this.teamName,indicators.INDICADOR_ID_CUMPRIMENTO_TREINAMENTO_JEDI, indicators.INDICADOR_CUMPRIMENTO_TREINAMENTO_JEDI,daoStudent.quantityActivitiesDone(this.userAsana));
             daoStudent.addStudentInList(student);            
         }
-        archive.saveLog(
-                daoStudent.getActivityCount(),
+        daoStudent.cleanActivity();
+        archive.saveLog(daoStudent.getActivityCount(),
                 daoStudent.getCountDelayedActivity(),
                 daoStudent.getCountActivityDone(),
-                email,"skywalkerluke041@gmail.com");
+                userAsana,"skywalkerluke041@gmail.com");
+        return userHaveActivity;
     }   
     
     public void deleteDataListForTabel(DefaultTableModel modelTableList){
