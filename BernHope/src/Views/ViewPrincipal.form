@@ -144,7 +144,7 @@
                       <Component id="panel_anexar_aquivo_csv" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="panel_additional_data" max="32767" attributes="0"/>
-                      <EmptySpace pref="26" max="32767" attributes="0"/>
+                      <EmptySpace pref="29" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -173,20 +173,20 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="btnChooseFile" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
                                   <Component id="lbl_File_Path" min="-2" pref="596" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="32767" attributes="0"/>
-                                  <Component id="lbl_validatoricon" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="lbl_title_anexar_aquivo" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  <EmptySpace min="-2" pref="684" max="-2" attributes="0"/>
                               </Group>
                           </Group>
+                          <EmptySpace min="-2" pref="259" max="-2" attributes="0"/>
+                          <Component id="lbl_validatoricon" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -218,7 +218,7 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="lbl_File_Path">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="B:\u005cMeus_Arquivos\u005cProjetos\u005c2019\u005cDesafio_Bernhoeft - Docs\u005cTreinamento_Jedi.csv" containsInvalidXMLChars="true"/>
+                    <Property name="text" type="java.lang.String" value="Nenhum arquivo selecionado..."/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="lbl_validatoricon">
@@ -263,69 +263,64 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="lbl_team_id_additional_data" max="32767" attributes="0"/>
+                                      <Component id="lbl_user_additional_data" min="-2" pref="56" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="check_training_compliance" min="-2" max="-2" attributes="0"/>
-                                      <Component id="check_delayed_actions" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lbl_indicator_additional_data" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="lbl_team_id_additional_data" max="32767" attributes="0"/>
-                                              <Component id="lbl_user_additional_data" min="-2" pref="56" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="lbl_mensage_error_team_id" alignment="0" min="-2" pref="262" max="-2" attributes="0"/>
+                                      <Group type="102" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="txt_team_id_additional_data" alignment="0" min="-2" pref="230" max="-2" attributes="0"/>
-                                              <Component id="lbl_mensage_error_team_id" alignment="0" min="-2" pref="262" max="-2" attributes="0"/>
                                               <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                                                   <Component id="lbl_mensage_error_user" alignment="0" max="32767" attributes="0"/>
                                                   <Component id="txt_user_additional_data" alignment="0" pref="230" max="32767" attributes="0"/>
                                               </Group>
+                                              <Component id="lbl_mensage_error_registration" min="-2" pref="230" max="-2" attributes="0"/>
                                           </Group>
-                                      </Group>
-                                      <Component id="btn_save" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
-                                          <Component id="lbl_mensage_error_registration" min="-2" pref="230" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="lbl_team_name_additional_data" max="32767" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="txt_team_name_additional_data" min="-2" pref="230" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="lbl_email_additional_data" min="-2" pref="41" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="lbl_months_additional_data" min="-2" max="-2" attributes="0"/>
+                                              <Group type="102" attributes="0">
+                                                  <Component id="lbl_months_additional_data" min="-2" pref="41" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="cb_months_additional_data" min="-2" pref="206" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="lbl_error_mes" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                               </Group>
-                                              <Group type="102" alignment="0" attributes="0">
+                                              <Group type="102" attributes="0">
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Component id="lbl_email_additional_data" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="lbl_team_name_additional_data" pref="100" max="32767" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace max="-2" attributes="0"/>
                                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                      <Component id="cb_months_additional_data" max="32767" attributes="0"/>
-                                                      <Component id="txt_email_additional_data" min="-2" pref="230" max="-2" attributes="0"/>
+                                                      <Component id="txt_team_name_additional_data" min="-2" pref="230" max="-2" attributes="0"/>
+                                                      <Component id="txt_user_asana_additional_data" min="-2" pref="230" max="-2" attributes="0"/>
                                                       <Component id="lbl_mensage_error_email" alignment="0" max="32767" attributes="0"/>
                                                   </Group>
-                                                  <EmptySpace min="27" pref="27" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
+                                          <EmptySpace min="-2" pref="434" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace min="-2" pref="208" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="lbl_title_additional_data" min="-2" max="-2" attributes="0"/>
-                                      <Group type="102" attributes="0">
+                                      <Component id="check_training_compliance" min="-2" max="-2" attributes="0"/>
+                                      <Component id="check_delayed_actions" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lbl_indicator_additional_data" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btn_save" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
                                           <Component id="lbl_registration_additional_data" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="txt_registration_additional_data" min="-2" pref="230" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="lbl_title_additional_data" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  <EmptySpace min="-2" pref="431" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -339,62 +334,61 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="lbl_title_additional_data" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Component id="lbl_months_additional_data" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="cb_months_additional_data" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lbl_mensage_error_registration" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="lbl_email_additional_data" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txt_email_additional_data" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="lbl_registration_additional_data" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="txt_registration_additional_data" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="lbl_mensage_error_registration" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="lbl_user_additional_data" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="txt_user_additional_data" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="lbl_mensage_error_user" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lbl_mensage_error_email" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="lbl_mensage_error_user" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                          <Component id="lbl_team_name_additional_data" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="txt_team_name_additional_data" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="lbl_team_id_additional_data" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="txt_team_id_additional_data" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="lbl_team_id_additional_data" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txt_team_id_additional_data" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="lbl_mensage_error_team_id" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="lbl_title_additional_data" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="cb_months_additional_data" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lbl_months_additional_data" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lbl_error_mes" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="lbl_email_additional_data" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txt_user_asana_additional_data" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="lbl_mensage_error_email" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="lbl_indicator_additional_data" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="check_delayed_actions" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="check_training_compliance" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                                  <Component id="btn_save" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="lbl_team_name_additional_data" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txt_team_name_additional_data" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
-                          <EmptySpace pref="36" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="lbl_indicator_additional_data" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="check_delayed_actions" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="check_training_compliance" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                          <Component id="btn_save" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="47" max="32767" attributes="0"/>
                           <Component id="lbl_status_file" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
                       </Group>
@@ -478,6 +472,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Novos Vingadores"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_team_name_additional_dataFocusLost"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="btn_save">
                   <Properties>
@@ -491,6 +488,7 @@
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Salvar"/>
+                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_saveActionPerformed"/>
@@ -519,38 +517,40 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="lbl_email_additional_data">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="*Email:"/>
+                    <Property name="text" type="java.lang.String" value="*Usu&#xe1;rio Asana:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="txt_email_additional_data">
+                <Component class="javax.swing.JTextField" name="txt_user_asana_additional_data">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="arthur42phg@gmail.com"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_email_additional_dataFocusLost"/>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_email_additional_dataActionPerformed"/>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_user_asana_additional_dataFocusLost"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_user_asana_additional_dataActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JComboBox" name="cb_months_additional_data">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="12">
-                        <StringItem index="0" value="Janeiro"/>
-                        <StringItem index="1" value="Fevereiro"/>
-                        <StringItem index="2" value="Mar&#xe7;o"/>
-                        <StringItem index="3" value="Abril"/>
-                        <StringItem index="4" value="Maio"/>
-                        <StringItem index="5" value="Junho"/>
-                        <StringItem index="6" value="Julho"/>
-                        <StringItem index="7" value="Agosto"/>
-                        <StringItem index="8" value="Setembro"/>
-                        <StringItem index="9" value="Outubro"/>
-                        <StringItem index="10" value="Novembro"/>
-                        <StringItem index="11" value="Dezembro"/>
+                      <StringArray count="13">
+                        <StringItem index="0" value="Escolha M&#xea;s"/>
+                        <StringItem index="1" value="Janeiro"/>
+                        <StringItem index="2" value="Fevereiro"/>
+                        <StringItem index="3" value="Mar&#xe7;o"/>
+                        <StringItem index="4" value="Abril"/>
+                        <StringItem index="5" value="Maio"/>
+                        <StringItem index="6" value="Junho"/>
+                        <StringItem index="7" value="Julho"/>
+                        <StringItem index="8" value="Agosto"/>
+                        <StringItem index="9" value="Setembro"/>
+                        <StringItem index="10" value="Outubro"/>
+                        <StringItem index="11" value="Novembro"/>
+                        <StringItem index="12" value="Dezembro"/>
                       </StringArray>
                     </Property>
                   </Properties>
                   <Events>
+                    <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cb_months_additional_dataItemStateChanged"/>
                     <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="cb_months_additional_dataFocusLost"/>
                   </Events>
                   <AuxValues>
@@ -559,7 +559,7 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="lbl_months_additional_data">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="M&#xea;s"/>
+                    <Property name="text" type="java.lang.String" value="*M&#xea;s"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="lbl_mensage_error_email">
@@ -576,6 +576,13 @@
                     </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="14" style="3"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lbl_error_mes">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="ff" type="rgb"/>
                     </Property>
                   </Properties>
                 </Component>
@@ -603,7 +610,7 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="ScrollPane_listData" alignment="1" pref="850" max="32767" attributes="0"/>
+                          <Component id="ScrollPane_listData" alignment="1" pref="1122" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="btn_export" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
