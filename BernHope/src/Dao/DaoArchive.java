@@ -35,11 +35,15 @@ import javax.swing.table.DefaultTableModel;
  */
 public class DaoArchive {
 
-    private ArrayList<AsanaCSV> listdadoscsv;
+    private ArrayList<AsanaCSV> listdadoscsv;    
     
     public DaoArchive() {
         listdadoscsv = new ArrayList<>();
     }        
+    
+    public ArrayList<AsanaCSV> getListdadoscsv() {
+        return listdadoscsv;
+    }
     
     public String readFirtLineFile(String filePath) throws IOException{
         //Ler o arquivo
@@ -88,7 +92,7 @@ public class DaoArchive {
                 String[] campos = line.split(csvDivider);                
                 try {
                     if (Long.parseLong(campos[0]) > 0) {
-                        if (DateUserful.getMonth(campos[1]) == month) {
+                        if ((DateUserful.getMonth(campos[1])+1) == month) {
                             dadoscsv.setTaskId(campos[0]);
                             dadoscsv.setCreatedAt(campos[1]);
                             dadoscsv.setCompletedAt(campos[2]);                
