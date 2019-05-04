@@ -10,6 +10,7 @@ A documentação do projeto se encontra no [Drive](https://docs.google.com/docum
 
 ### Lista de programas que deve conter na sua máquina.
 1. [Java SE Runtime Environment](https://www.oracle.com/technetwork/pt/java/javase/downloads/jre8-downloads-2133155.html)
+2. [Java SE Development Kit](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 
 ### Executando o projeto
 Para executar o projeto a partir da linha de comando, vá para a pasta __dist__ e escrever o seguinte: java -jar "BernHope.jar"
