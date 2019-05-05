@@ -155,10 +155,8 @@ public class ViewPrincipal extends javax.swing.JFrame {
                         .addComponent(btnChooseFile)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lbl_File_Path, javax.swing.GroupLayout.PREFERRED_SIZE, 596, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panel_anexar_aquivo_csvLayout.createSequentialGroup()
-                        .addComponent(lbl_title_anexar_aquivo)
-                        .addGap(684, 684, 684)))
-                .addGap(259, 259, 259)
+                    .addComponent(lbl_title_anexar_aquivo))
+                .addGap(339, 339, 339)
                 .addComponent(lbl_validatoricon)
                 .addContainerGap())
         );
@@ -192,36 +190,30 @@ public class ViewPrincipal extends javax.swing.JFrame {
 
         lbl_indicator_additional_data.setText("*Indicadores:");
 
-        txt_user_additional_data.setText("425");
         txt_user_additional_data.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt_user_additional_dataFocusLost(evt);
             }
         });
 
-        txt_registration_additional_data.setText("dfgbdgvbsffvaed");
         txt_registration_additional_data.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt_registration_additional_dataFocusLost(evt);
             }
         });
 
-        txt_team_id_additional_data.setText("70");
         txt_team_id_additional_data.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt_team_id_additional_dataFocusLost(evt);
             }
         });
 
-        check_delayed_actions.setSelected(true);
         check_delayed_actions.setText("% Ações Atrasadas");
 
-        check_training_compliance.setSelected(true);
         check_training_compliance.setText("Cumprimento do treinamento JEDI");
 
         lbl_team_name_additional_data.setText("Equipe Nome:");
 
-        txt_team_name_additional_data.setText("Novos Vingadores");
         txt_team_name_additional_data.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt_team_name_additional_dataFocusLost(evt);
@@ -247,7 +239,6 @@ public class ViewPrincipal extends javax.swing.JFrame {
 
         lbl_email_additional_data.setText("*Usuário Asana:");
 
-        txt_user_asana_additional_data.setText("arthur42phg@gmail.com");
         txt_user_asana_additional_data.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt_user_asana_additional_dataFocusLost(evt);

@@ -180,12 +180,9 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="lbl_File_Path" min="-2" pref="596" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="lbl_title_anexar_aquivo" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="684" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="lbl_title_anexar_aquivo" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="259" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="339" max="-2" attributes="0"/>
                           <Component id="lbl_validatoricon" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -428,38 +425,27 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txt_user_additional_data">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="425"/>
-                  </Properties>
                   <Events>
                     <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_user_additional_dataFocusLost"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txt_registration_additional_data">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="dfgbdgvbsffvaed"/>
-                  </Properties>
                   <Events>
                     <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_registration_additional_dataFocusLost"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txt_team_id_additional_data">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="70"/>
-                  </Properties>
                   <Events>
                     <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_team_id_additional_dataFocusLost"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="check_delayed_actions">
                   <Properties>
-                    <Property name="selected" type="boolean" value="true"/>
                     <Property name="text" type="java.lang.String" value="% A&#xe7;&#xf5;es Atrasadas"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="check_training_compliance">
                   <Properties>
-                    <Property name="selected" type="boolean" value="true"/>
                     <Property name="text" type="java.lang.String" value="Cumprimento do treinamento JEDI"/>
                   </Properties>
                 </Component>
@@ -469,9 +455,6 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txt_team_name_additional_data">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Novos Vingadores"/>
-                  </Properties>
                   <Events>
                     <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_team_name_additional_dataFocusLost"/>
                   </Events>
@@ -521,9 +504,6 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txt_user_asana_additional_data">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="arthur42phg@gmail.com"/>
-                  </Properties>
                   <Events>
                     <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_user_asana_additional_dataFocusLost"/>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_user_asana_additional_dataActionPerformed"/>
